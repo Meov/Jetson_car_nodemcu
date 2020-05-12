@@ -12,7 +12,10 @@ void Display::display_init(){
 }
 
 void Display::show_wifi_status(String s){
-  //display.clear();
+  
+  if(s!="wifi connected") 
+    display.clear();
+  
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0,0);
@@ -21,7 +24,7 @@ void Display::show_wifi_status(String s){
   display.update();
 }
 
-void Display::show_ip(int s){   
+void Display::show_ip(int s){
   //display.clear();
   display.setTextSize(1);
   display.setTextColor(WHITE);
@@ -50,8 +53,7 @@ void Display::show_string(String s){
   display.setTextSize(2);
   display.setTextColor(WHITE);
   display.setCursor(0,30);
-  display.fillRect(0,30,150,50,0);
-  display.println("");
+  display.fillRect(0,30,150,30,0);
   display.println(s);
   display.update();
 } 

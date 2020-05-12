@@ -29,12 +29,12 @@ void wifi_status_show(int status){
 
 void wifi_connect(){
   display_oled.show_wifi_status("connecting wifi...");
-  wifi_server.wifi_init();
+  wifi_server.wifi_init ();
   if(wifi_status == wifi_connect_connected){
     display_oled.show_ip(wifi_server.ip_addr);  //show the ip address
     display_oled.show_wifi_ssid(wifi_server.wifi_ssid);
+    display_oled.show_string("straight");
    }
-    
 }
 
 void setup() {
@@ -42,6 +42,8 @@ void setup() {
   servo1.attach(12);
   servo1.write(angle); //turn to straight at initial state
   display_oled.display_init();
+  display_oled.show_string("reset");  
+  delay(2000); 
   wifi_connect(); 
 }
 void loop() {
@@ -49,8 +51,8 @@ void loop() {
     wifi_status_show(wifi_status);   
     char *turn_direction;  
     if(wifi_status != wifi_connect_connected){
-      delay(2000);
       servo1.write(MIDDLE);
+      delay(2000);
       wifi_connect();
     }
     angle = wifi_server.data_recived;
@@ -60,7 +62,7 @@ void loop() {
     }
     if(angle>30){
         turn_direction = "right"; 
-    }  
+    }
     //Serial.println(angle);   
     servo1.write(angle);
     
