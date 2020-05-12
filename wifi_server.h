@@ -12,7 +12,7 @@ class Wifi_server
   public:
     String wifi_ssid;
     u32_t ip_addr = 0;
-    int data_recived=30;
+    //int data_recived=30;
     Wifi_server();
     void wifi_init();
     void wifi_server();

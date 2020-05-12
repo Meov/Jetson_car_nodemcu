@@ -14,4 +14,5 @@ class Display
     void show_string(String s);
     void show_wifi_status(String s);
     void show_wifi_ssid(String s);
+    void show_led_pwm(String s);
 };

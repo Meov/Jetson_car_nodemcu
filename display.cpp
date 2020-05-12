@@ -29,7 +29,7 @@ void Display::show_ip(int s){
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0,10);  //show it on the left uopn
-  display.fillRect(0,10,150,10,0);
+  display.fillRect(0,10,100,10,0);
   unsigned char *ip = (unsigned char*)&s;
   char ip_str[20];
   sprintf(ip_str,"%d.%d.%d.%d",ip[0],ip[1],ip[2],ip[3]);
@@ -44,7 +44,7 @@ void Display::show_wifi_ssid(String s){
   display.setTextColor(WHITE);
   display.setCursor(0,20);
   display.fillRect(0,20,150,10,0);
-  display.println(s);
+  display.print("SSID:");display.println(s);
   display.update();
 } 
 
@@ -59,7 +59,15 @@ void Display::show_string(String s){
 } 
 
 
-
+void Display::show_led_pwm(String s){
+  //display.clear();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(100,10);
+  display.fillRect(100,10,150,10,0);
+  display.println(s);
+  display.update();
+}
 /*
 void loop()
 {

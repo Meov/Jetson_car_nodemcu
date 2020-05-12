@@ -14,6 +14,10 @@
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>  
 
+
+extern int angle;
+
+
 WiFiServer server(80);
 //int time1;
 boolean init_esp = false;  //enable this to remove all the network saved
@@ -88,12 +92,12 @@ void Wifi_server::wifi_server() {
   // Match the request
   int val;
   if (req.indexOf(F("/gpio/0")) != -1) {
-    data_recived += 5;
-    if(data_recived>=60) data_recived = 60;
+    angle += 5;
+    if(angle>=60) angle = 60;
     val = 0;
   } else if (req.indexOf(F("/gpio/1")) != -1) {
-    data_recived -= 5;
-    if(data_recived<=0) data_recived = 0;
+    angle -= 5;
+    if(angle<=0) angle = 0;
     val = 1;
   } else if(req.indexOf(F("/wifi_reset"))!=-1){
     wifi_status = wifi_connect_disconnect;
