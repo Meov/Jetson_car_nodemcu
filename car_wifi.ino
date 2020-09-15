@@ -41,7 +41,7 @@ void wifi_connect(){
 }
 void setup() {
   Serial.begin(115200);
-  servo1.attach(12);
+  servo1.attach(12);  //servo motor pin   pin12===>D6 in nodemcu
   servo1.write(angle); //turn to straight at initial state
   display_oled.display_init();
   display_oled.show_string("reset");  
@@ -49,12 +49,13 @@ void setup() {
   wifi_connect(); 
   homekit_client.homekit_setup();
 }
+
 void loop() {
     wifi_server.wifi_server();
     wifi_status_show(wifi_status); 
     homekit_client.homekit_loop();
     char *turn_direction;  
-    if(wifi_status != wifi_connect_connected){
+    if(wifi_status != wifi_connect_connected){ //check wifi status
       servo1.write(MIDDLE);
       delay(2000);
       wifi_connect();
